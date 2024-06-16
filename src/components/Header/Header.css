@@ -1,0 +1,47 @@
+.header {
+  display: flex;
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  padding-top: 32px;
+  height: 40px;
+}
+
+.header__logo {
+  height: 40px;
+  width: 89px;
+  margin-right: 24px;
+}
+
+.header__date {
+  margin: 11px 742px 0 0;
+}
+
+.header__add-button {
+  padding: 0;
+  margin: 7px 20px 0 0;
+  border: none;
+  background: none;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  font-weight: 700;
+}
+
+.header__user-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.header__name {
+  margin: 11px 0 0;
+}
+
+.header__avatar {
+  background-image: url(../../assets/avatar.svg);
+  height: 40px;
+  width: 40px;
+  border: #000 1px;
+  border-radius: 50%;
+}
