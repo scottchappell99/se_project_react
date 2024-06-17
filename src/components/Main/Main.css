@@ -1,5 +1,6 @@
 .main {
   margin: 28px 0 0;
+  flex-grow: 1;
 }
 
 .cards__text {
@@ -7,5 +8,16 @@
   font-weight: 700;
   font-size: 20px;
   line-height: calc(24 / 20);
+  margin: 0 0 34px;
+}
+
+.cards__list {
+  max-width: 1360px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: auto;
+  row-gap: 20px;
+  column-gap: 20px;
   margin: 0;
+  padding: 0;
 }
