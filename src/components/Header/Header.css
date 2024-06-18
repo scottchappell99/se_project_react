@@ -15,7 +15,8 @@
 }
 
 .header__date {
-  margin: 11px 742px 0 0;
+  margin: 11px 0 0 0;
+  flex-grow: 1;
 }
 
 .header__add-button {
