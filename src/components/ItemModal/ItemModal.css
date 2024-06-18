@@ -1,0 +1,34 @@
+.modal__content_type_image {
+  max-width: 498px;
+  padding: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.modal__image {
+  height: 498px;
+  width: 498px;
+}
+
+.modal__image-text {
+  height: 112px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.modal__clothing-info {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  margin: 20px 0 0 32px;
+}
+
+.modal__clothing-info:last-of-type {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  margin: 0 0 32px 32px;
+}

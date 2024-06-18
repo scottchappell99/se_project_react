@@ -5,6 +5,7 @@ import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
+import ItemModal from "../ItemModal/ItemModal.jsx";
 
 function App() {
   useEffect(() => {
@@ -22,6 +23,7 @@ function App() {
     temperature: 75,
   });
   const [activeModal, setActiveModal] = useState("");
+  const [selectedCard, setSelectedCard] = useState({});
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -31,11 +33,16 @@ function App() {
     setActiveModal("");
   };
 
+  const handleCardClick = (card) => {
+    setActiveModal("preview-garment");
+    setSelectedCard(card);
+  };
+
   return (
     <div className="app">
       <div className="app__content">
         <Header handleAddClick={handleAddClick} />
-        <Main weatherData={weatherData} />
+        <Main weatherData={weatherData} openCard={handleCardClick} />
         <Footer />
       </div>
       <ModalWithForm
@@ -95,6 +102,11 @@ function App() {
           </label>
         </fieldset>
       </ModalWithForm>
+      <ItemModal
+        activeModal={activeModal}
+        selectedCard={selectedCard}
+        handleClose={closeActiveModal}
+      />
     </div>
   );
 }

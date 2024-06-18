@@ -1,8 +1,13 @@
 import "./ItemCard.css";
 
-function ItemCard({ item }) {
+function ItemCard({ item, openCard }) {
   return (
-    <div className="card">
+    <div
+      className="card"
+      onClick={() => {
+        openCard(item);
+      }}
+    >
       <div className="card__name-wrapper">
         <h2 className="card__name">{item.name}</h2>
       </div>

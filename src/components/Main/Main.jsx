@@ -3,7 +3,7 @@ import { defaultClothingItems } from "../../utils/constants.js";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 
-function Main({ weatherData }) {
+function Main({ weatherData, openCard }) {
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
@@ -17,7 +17,9 @@ function Main({ weatherData }) {
               return item.weather === weatherData.type;
             })
             .map((item) => {
-              return <ItemCard key={item._id} item={item} />;
+              return (
+                <ItemCard key={item._id} item={item} openCard={openCard} />
+              );
             })}
         </ul>
       </section>
