@@ -18,7 +18,20 @@
 }
 
 .weather-card__image {
-  width: 1360px;
+  width: 100%;
   height: 80px;
   margin: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  display: block;
+  object-position: right top;
+  object-fit: cover;
+  max-width: 1360px;
+  min-width: 343px;
+}
+
+@media screen and (max-width: 725px) {
+  .weather-card {
+    margin: 0 0 32px;
+  }
 }

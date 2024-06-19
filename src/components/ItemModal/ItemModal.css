@@ -7,7 +7,7 @@
 
 .modal__image {
   height: 498px;
-  width: 498px;
+  width: 100%;
 }
 
 .modal__image-text {
@@ -31,4 +31,17 @@
   font-size: 20px;
   line-height: calc(24 / 20);
   margin: 0 0 32px 32px;
+}
+
+@media screen and (max-width: 725px) {
+  .modal__content_type_image {
+    max-width: 343px;
+    height: 463px;
+    margin: 0 16px;
+  }
+
+  .modal__image {
+    width: 100%;
+    height: 343px;
+  }
 }

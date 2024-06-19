@@ -119,3 +119,17 @@
   border-radius: 4px;
   background-color: #000;
 }
+
+@media screen and (max-width: 725px) {
+  .modal__close {
+    background: no-repeat center url(../../assets/close-black.svg);
+    width: 22px;
+    height: 22px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .modal__submit {
+    width: 100%;
+  }
+}

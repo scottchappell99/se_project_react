@@ -22,6 +22,7 @@ function Main({ weatherData, openCard }) {
               );
             })}
         </ul>
+        <button type="button" className="cards__randomize"></button>
       </section>
     </main>
   );
