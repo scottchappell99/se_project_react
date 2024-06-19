@@ -8,9 +8,7 @@ function ItemCard({ item, openCard }) {
         openCard(item);
       }}
     >
-      <div className="card__name-wrapper">
-        <h2 className="card__name">{item.name}</h2>
-      </div>
+      <h2 className="card__name">{item.name}</h2>
       <img src={item.link} alt={item.name} className="card__image" />
     </div>
   );

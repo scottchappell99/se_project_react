@@ -1,4 +1,5 @@
 import "./Header.css";
+import logo from "../../assets/wtwr-logo.svg";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -9,7 +10,7 @@ function Header({ handleAddClick, weatherData }) {
   return (
     <header className="header">
       <img
-        src="../src/assets/wtwr-logo.svg"
+        src={logo}
         alt="WTWR Logo with a degree sign to the top right"
         className="header__logo"
       />
