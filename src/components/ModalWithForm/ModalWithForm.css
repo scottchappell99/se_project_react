@@ -118,9 +118,25 @@
   border: none;
   border-radius: 4px;
   background-color: #000;
+  transition: background-color 0.5s linear;
+}
+
+.modal__submit:hover {
+  background-color: #00000099;
+}
+
+.modal__submit:disabled {
+  background-color: #0000004d;
 }
 
 @media screen and (max-width: 725px) {
+  .modal__content_type_form {
+    position: absolute;
+    bottom: 0;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+
   .modal__close {
     background: no-repeat center url(../../assets/close-black.svg);
     width: 22px;

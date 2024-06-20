@@ -20,7 +20,7 @@ function ModalWithForm({
 
   return (
     <div className={`modal ${activeModal === "add-garment" && "modal_open"}`}>
-      <div className="modal__content">
+      <div className="modal__content modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
         <button
           onClick={handleClose}
@@ -29,7 +29,7 @@ function ModalWithForm({
         ></button>
         <form className="modal__form">
           {children}
-          <button type="submit" className="modal__submit">
+          <button type="submit" className="modal__submit" disabled>
             {buttonText}
           </button>
         </form>
