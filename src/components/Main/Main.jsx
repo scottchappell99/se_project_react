@@ -2,6 +2,7 @@ import "./Main.css";
 import { defaultClothingItems } from "../../utils/constants.js";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
+import randomizeImage from "../../assets/randomize.svg";
 
 function Main({ weatherData, openCard }) {
   return (
@@ -22,7 +23,14 @@ function Main({ weatherData, openCard }) {
               );
             })}
         </ul>
-        <button type="button" className="cards__randomize"></button>
+        <button type="button" className="cards__randomize">
+          <img
+            src={randomizeImage}
+            alt="An arrow from the right, circling around under, going to the top"
+            className="cards__randomize-image"
+          />
+          Randomize
+        </button>
       </section>
     </main>
   );
