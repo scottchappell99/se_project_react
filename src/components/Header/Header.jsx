@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
@@ -10,17 +10,10 @@ const currentDate = new Date().toLocaleString("default", {
 });
 
 function Header({ handleAddClick, weatherData }) {
-  const hamburgerMenuContainer = document.querySelector(".header__user-box");
   const [isMobileMenuOpened, toggleMobileMenu] = useState(false);
 
   const handleHamburgerMenuClick = () => {
-    if (isMobileMenuOpened) {
-      toggleMobileMenu(false);
-      hamburgerMenuContainer.classList.remove("header__user-box_open");
-    } else {
-      toggleMobileMenu(true);
-      hamburgerMenuContainer.classList.add("header__user-box_open");
-    }
+    toggleMobileMenu((prev) => !prev);
   };
 
   const handleHamburgerAddClick = () => {
@@ -43,7 +36,11 @@ function Header({ handleAddClick, weatherData }) {
       <p className="header__date">
         {currentDate}, {weatherData.city}
       </p>
-      <div className="header__user-box">
+      <div
+        className={`header__user-box ${
+          isMobileMenuOpened ? "header__user-box_open" : ""
+        }`}
+      >
         <button
           onClick={handleHamburgerMenuClick}
           type="button"

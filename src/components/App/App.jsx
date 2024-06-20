@@ -10,7 +10,16 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 
 function App() {
+  const [activeModal, setActiveModal] = useState("");
+  const [weatherData, setWeatherData] = useState({
+    type: "",
+    temp: "999",
+    city: "",
+  });
+  const [selectedCard, setSelectedCard] = useState({});
+
   useEffect(() => {
+    if (!activeModal) return;
     const handleEscPress = (evt) => {
       evt.key === "Escape" && closeActiveModal();
     };
@@ -18,15 +27,7 @@ function App() {
     return () => {
       window.removeEventListener("keydown", handleEscPress);
     };
-  }, []);
-
-  const [weatherData, setWeatherData] = useState({
-    type: "",
-    temp: "999",
-    city: "",
-  });
-  const [activeModal, setActiveModal] = useState("");
-  const [selectedCard, setSelectedCard] = useState({});
+  }, [activeModal]);
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
@@ -34,6 +35,10 @@ function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+  };
+
+  const handleOutsideClick = (evt) => {
+    evt.target.id === activeModal && closeActiveModal();
   };
 
   const handleCardClick = (card) => {
@@ -47,7 +52,7 @@ function App() {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch((err) => console.error(err));
+      .catch(console.error);
   }, []);
 
   return (
@@ -62,8 +67,10 @@ function App() {
         title="New garment"
         activeModal={activeModal}
         handleClose={closeActiveModal}
+        isOpen="add-garment"
+        handleOutsideClick={handleOutsideClick}
       >
-        <label htmlFor="name" className="modal__label">
+        <label className="modal__label">
           Name
           <input
             type="text"
@@ -72,7 +79,7 @@ function App() {
             placeholder="Name"
           />
         </label>
-        <label htmlFor="imageUrl" className="modal__label">
+        <label className="modal__label">
           Image
           <input
             type="url"
@@ -85,7 +92,7 @@ function App() {
           <legend className="modal__weather-legend">
             Select the weather type:
           </legend>
-          <label htmlFor="hot" className="modal__radio-label">
+          <label className="modal__radio-label">
             <input
               type="radio"
               className="modal__radio-input"
@@ -94,7 +101,7 @@ function App() {
             />
             <span className="modal__radio-text">Hot</span>
           </label>
-          <label htmlFor="warm" className="modal__radio-label">
+          <label className="modal__radio-label">
             <input
               type="radio"
               className="modal__radio-input"
@@ -103,7 +110,7 @@ function App() {
             />
             <span className="modal__radio-text">Warm</span>
           </label>
-          <label htmlFor="cold" className="modal__radio-label">
+          <label className="modal__radio-label">
             <input
               type="radio"
               className="modal__radio-input"
@@ -118,6 +125,8 @@ function App() {
         activeModal={activeModal}
         selectedCard={selectedCard}
         handleClose={closeActiveModal}
+        handleOutsideClick={handleOutsideClick}
+        isOpen="preview-garment"
       />
     </div>
   );
