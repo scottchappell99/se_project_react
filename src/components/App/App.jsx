@@ -17,10 +17,6 @@ function App() {
     city: "",
   });
   const [selectedCard, setSelectedCard] = useState({});
-  const [isOpen, setIsOpen] = useState({
-    modalWithForm: false,
-    itemModal: false,
-  });
 
   useEffect(() => {
     if (!activeModal) return;
@@ -35,15 +31,10 @@ function App() {
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
-    setIsOpen({ modalWithForm: true });
   };
 
   const closeActiveModal = () => {
     setActiveModal("");
-    setIsOpen({
-      modalWithForm: false,
-      itemModal: false,
-    });
   };
 
   const handleOutsideClick = (evt) => {
@@ -53,7 +44,6 @@ function App() {
   const handleCardClick = (card) => {
     setActiveModal("preview-garment");
     setSelectedCard(card);
-    setIsOpen({ itemModal: true });
   };
 
   useEffect(() => {
@@ -78,7 +68,7 @@ function App() {
         activeModal={activeModal}
         handleClose={closeActiveModal}
         handleOutsideClick={handleOutsideClick}
-        isOpen={isOpen}
+        isOpen={activeModal === "add-garment"}
       >
         <label className="modal__label">
           Name
@@ -136,7 +126,7 @@ function App() {
         selectedCard={selectedCard}
         handleClose={closeActiveModal}
         handleOutsideClick={handleOutsideClick}
-        isOpen={isOpen}
+        isOpen={activeModal === "preview-garment"}
       />
     </div>
   );

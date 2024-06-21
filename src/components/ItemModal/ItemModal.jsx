@@ -8,9 +8,9 @@ const ItemModal = forwardRef(
   ) => {
     return (
       <div
-        className={`modal ${isOpen.itemModal && "modal_open"}`}
+        className={`modal ${isOpen && "modal_open"}`}
         onClick={handleOutsideClick}
-        id={isOpen.itemModal ? activeModal : undefined}
+        id={isOpen ? activeModal : undefined}
       >
         <div className="modal__content modal__content_type_image">
           <button

@@ -11,9 +11,9 @@ function ModalWithForm({
 }) {
   return (
     <div
-      className={`modal ${isOpen.modalWithForm && "modal_open"}`}
+      className={`modal ${isOpen && "modal_open"}`}
       onClick={handleOutsideClick}
-      id={isOpen.modalWithForm ? activeModal : undefined}
+      id={isOpen ? activeModal : undefined}
     >
       <div className="modal__content modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
