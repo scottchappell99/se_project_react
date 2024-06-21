@@ -4,12 +4,15 @@
 
 WTWR is written in React and JSX through Vite. In it, a weather API is called, returning weather, time, and location information. The temperature is used to determine what clothing should be worn. Other weather information is used to display the current weather. Time and location information are used to show, well, what the location is, and if it is day or night.
 
+WTWR is also responsive, with the ideal desktop width being 1440px and the ideal mobile width being 375px.
+
 My ranges of comfort with temperature are typically different that other people, so the ranges for clothing may be uncomfortable for others.
 
 The ranges are:
--Hot: >= 70° F
--Warm: 45° - 69° F
--Cold < 45° F
+
+- Hot: >= 70° F
+- Warm: 45° - 69° F
+- Cold < 45° F
 
 ## Links
 

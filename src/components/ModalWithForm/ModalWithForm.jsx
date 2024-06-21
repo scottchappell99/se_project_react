@@ -6,14 +6,14 @@ function ModalWithForm({
   title,
   activeModal,
   handleClose,
-  isOpen,
   handleOutsideClick,
+  isOpen,
 }) {
   return (
     <div
-      className={`modal ${activeModal === isOpen && "modal_open"}`}
+      className={`modal ${isOpen.modalWithForm && "modal_open"}`}
       onClick={handleOutsideClick}
-      id={activeModal === isOpen && activeModal}
+      id={isOpen.modalWithForm ? activeModal : undefined}
     >
       <div className="modal__content modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
