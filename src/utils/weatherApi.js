@@ -16,11 +16,14 @@ const parseRequest = (res) => {
 
 export const filterWeatherData = (data) => {
   const result = {};
+  result.temp = {};
   result.city = data.name;
-  result.temp = Math.round(data.main.temp);
+  result.temp.F = Math.round(data.main.temp);
+  result.temp.C = Math.round((data.main.temp - 32) * (5 / 9));
   result.type = getWeatherType(result.temp);
   result.condition = data.weather[0].main.toLowerCase();
   result.isDay = isDay(data.sys, Date.now() / 1000);
+
   return result;
 };
 

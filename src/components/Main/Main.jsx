@@ -3,14 +3,20 @@ import { defaultClothingItems } from "../../utils/constants.js";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import randomizeImage from "../../assets/randomize.svg";
+import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
+import { useContext } from "react";
 
 function Main({ weatherData, openCard }) {
+  const tempUnit = useContext(CurrentTempUnitContext);
+
   return (
     <main className="main">
       <WeatherCard weatherData={weatherData} />
       <section className="cards">
         <p className="cards__text">
-          Today is {weatherData.temp}&deg; F / You may want to wear:
+          {`Today is ${weatherData.temp[tempUnit.currentTempUnit]}\u00B0 ${
+            tempUnit.currentTempUnit
+          } / You may want to wear:`}
         </p>
         <ul className="cards__list">
           {defaultClothingItems

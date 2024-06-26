@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -41,6 +42,7 @@ function Header({ handleAddClick, weatherData }) {
           isMobileMenuOpened ? "header__user-box_open" : ""
         }`}
       >
+        <ToggleSwitch />
         <button
           onClick={handleHamburgerMenuClick}
           type="button"
