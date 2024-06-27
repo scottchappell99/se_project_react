@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
 import { coordinates, APIkey } from "../../utils/constants.js";
@@ -7,6 +8,7 @@ import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
+import Profile from "../Profile/Profile.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 
@@ -68,7 +70,20 @@ function App() {
       >
         <div className="app__content">
           <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Main weatherData={weatherData} openCard={handleCardClick} />
+          <Routes>
+            <Route
+              path="/se_project_react/"
+              element={
+                <Main weatherData={weatherData} openCard={handleCardClick} />
+              }
+            />
+            <Route
+              path="/se_project_react/profile/"
+              element={
+                <Profile weatherData={weatherData} openCard={handleCardClick} />
+              }
+            />
+          </Routes>
           <Footer />
         </div>
         <ModalWithForm

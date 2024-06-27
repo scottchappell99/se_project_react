@@ -4,6 +4,7 @@ import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import { Link } from "react-router-dom";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
@@ -24,11 +25,13 @@ function Header({ handleAddClick, weatherData }) {
 
   return (
     <header className="header">
-      <img
-        src={logo}
-        alt="WTWR Logo with a degree sign to the top right"
-        className="header__logo"
-      />
+      <Link to="/se_project_react/">
+        <img
+          src={logo}
+          alt="WTWR Logo with a degree sign to the top right"
+          className="header__logo"
+        />
+      </Link>
       <button
         onClick={handleHamburgerMenuClick}
         type="button"
@@ -55,10 +58,12 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add clothes
         </button>
-        <div className="header__user-container">
-          <p className="header__name">Scott Chappell</p>
-          <img src={avatar} alt="Scott Chappell" className="header__avatar" />
-        </div>
+        <Link to="/se_project_react/profile/" className="header__profile-link">
+          <div className="header__user-container">
+            <p className="header__name">Scott Chappell</p>
+            <img src={avatar} alt="Scott Chappell" className="header__avatar" />
+          </div>
+        </Link>
       </div>
     </header>
   );

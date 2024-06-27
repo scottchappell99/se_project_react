@@ -1,0 +1,45 @@
+.clothes-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.clothes-section__text-area {
+  display: flex;
+  height: 56px;
+  align-items: center;
+  gap: 20px;
+}
+
+.clothes-section__text {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(25 / 20);
+  margin: 0;
+}
+
+.clothes-section__add-button {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(25 / 20);
+  border: none;
+  background: none;
+  padding: 0;
+  color: #00000099;
+  transition: color 0.5s linear;
+}
+
+.clothes-section__add-button:hover {
+  color: #000;
+}
+
+.clothes-section__cards-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  padding: 0;
+  margin: 0;
+  row-gap: 20px;
+  column-gap: 20px;
+}

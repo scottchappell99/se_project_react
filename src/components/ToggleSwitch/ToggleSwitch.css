@@ -46,6 +46,7 @@
 
 .toggle-switch__scale-f_active {
   color: #fff;
+  cursor: pointer;
 }
 
 .toggle-switch__scale-c {
@@ -63,4 +64,5 @@
 
 .toggle-switch__scale-c_active {
   color: #fff;
+  cursor: pointer;
 }

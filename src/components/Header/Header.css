@@ -58,9 +58,21 @@
   line-height: calc(24 / 20);
   font-weight: 700;
   transition: color 0.5s linear;
+  cursor: pointer;
 }
 
 .header__add-button:hover {
+  color: #00000099;
+}
+
+.header__profile-link {
+  text-decoration: none;
+  color: #000;
+  cursor: pointer;
+  transition: color 0.5s linear;
+}
+
+.header__profile-link:hover {
   color: #00000099;
 }
 
