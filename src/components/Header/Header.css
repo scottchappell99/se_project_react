@@ -47,6 +47,7 @@
   background: transparent url("../../assets/close-black.svg") center no-repeat;
   width: 22px;
   height: 22px;
+  cursor: pointer;
 }
 
 .header__add-button {

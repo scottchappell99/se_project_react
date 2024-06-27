@@ -46,6 +46,7 @@
   top: 20px;
   right: 28px;
   border: 0;
+  cursor: pointer;
 }
 
 .modal__form {
@@ -96,11 +97,13 @@
 
 .modal__radio-label {
   color: #00000080;
+  cursor: pointer;
 }
 
 .modal__radio-input {
   margin: 0 11px 0 0;
   accent-color: #000;
+  cursor: pointer;
 }
 
 .modal__radio-input:checked + .modal__radio-text {
@@ -119,6 +122,7 @@
   border-radius: 4px;
   background-color: #000;
   transition: background-color 0.5s linear;
+  cursor: pointer;
 }
 
 .modal__submit:hover {
