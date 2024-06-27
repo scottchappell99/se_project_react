@@ -2,13 +2,18 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 
 import "./App.css";
-import { coordinates, APIkey } from "../../utils/constants.js";
+import {
+  coordinates,
+  APIkey,
+  defaultClothingItems,
+} from "../../utils/constants.js";
 import Header from "../Header/Header.jsx";
 import Main from "../Main/Main.jsx";
 import Footer from "../Footer/Footer.jsx";
 import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
+import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 
@@ -21,6 +26,7 @@ function App() {
   });
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
+  const [clothingItems, setClothingItems] = useState({ defaultClothingItems });
 
   useEffect(() => {
     if (!activeModal) return;
@@ -54,6 +60,8 @@ function App() {
     currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
   };
 
+  const handleAddItemSubmit = (values) => {};
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -80,71 +88,22 @@ function App() {
             <Route
               path="/se_project_react/profile/"
               element={
-                <Profile weatherData={weatherData} openCard={handleCardClick} />
+                <Profile
+                  openCard={handleCardClick}
+                  handleAddClick={handleAddClick}
+                />
               }
             />
           </Routes>
           <Footer />
         </div>
-        <ModalWithForm
-          buttonText="Add garment"
-          title="New garment"
+        <AddItemModal
           activeModal={activeModal}
-          handleClose={closeActiveModal}
+          closeActiveModal={closeActiveModal}
           handleOutsideClick={handleOutsideClick}
+          onAddItem={handleAddItemSubmit}
           isOpen={activeModal === "add-garment"}
-        >
-          <label className="modal__label">
-            Name
-            <input
-              type="text"
-              className="modal__input"
-              id="name"
-              placeholder="Name"
-            />
-          </label>
-          <label className="modal__label">
-            Image
-            <input
-              type="url"
-              className="modal__input"
-              id="imageUrl"
-              placeholder="Image URL"
-            />
-          </label>
-          <fieldset className="modal__radio-buttons">
-            <legend className="modal__weather-legend">
-              Select the weather type:
-            </legend>
-            <label className="modal__radio-label">
-              <input
-                type="radio"
-                className="modal__radio-input"
-                id="hot"
-                name="weather"
-              />
-              <span className="modal__radio-text">Hot</span>
-            </label>
-            <label className="modal__radio-label">
-              <input
-                type="radio"
-                className="modal__radio-input"
-                id="warm"
-                name="weather"
-              />
-              <span className="modal__radio-text">Warm</span>
-            </label>
-            <label className="modal__radio-label">
-              <input
-                type="radio"
-                className="modal__radio-input"
-                id="cold"
-                name="weather"
-              />
-              <span className="modal__radio-text">Cold</span>
-            </label>
-          </fieldset>
-        </ModalWithForm>
+        />
         <ItemModal
           activeModal={activeModal}
           selectedCard={selectedCard}

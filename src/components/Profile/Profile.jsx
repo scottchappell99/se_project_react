@@ -2,11 +2,11 @@ import "./Profile.css";
 import Sidebar from "./Sidebar";
 import ClothesSection from "./ClothesSection";
 
-function Profile({ weatherData, openCard }) {
+function Profile({ openCard, handleAddClick }) {
   return (
     <div className="profile">
       <Sidebar />
-      <ClothesSection weatherData={weatherData} openCard={openCard} />
+      <ClothesSection openCard={openCard} handleAddClick={handleAddClick} />
     </div>
   );
 }

@@ -8,6 +8,7 @@ function ModalWithForm({
   handleClose,
   handleOutsideClick,
   isOpen,
+  handleSubmit,
 }) {
   return (
     <div
@@ -18,9 +19,13 @@ function ModalWithForm({
       <div className="modal__content modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
         <button onClick={handleClose} type="button" className="modal__close" />
-        <form className="modal__form">
+        <form className="modal__form" onSubmit={(evt) => handleSubmit(evt)}>
           {children}
-          <button type="submit" className="modal__submit" disabled>
+          <button
+            type="submit"
+            className="modal__submit"
+            // disabled
+          >
             {buttonText}
           </button>
         </form>
