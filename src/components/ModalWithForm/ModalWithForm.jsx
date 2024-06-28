@@ -9,7 +9,12 @@ function ModalWithForm({
   handleOutsideClick,
   isOpen,
   handleSubmit,
+  isError,
 }) {
+  const resetForm = (evt) => {
+    evt.target.reset();
+  };
+
   return (
     <div
       className={`modal ${isOpen && "modal_open"}`}
@@ -21,11 +26,7 @@ function ModalWithForm({
         <button onClick={handleClose} type="button" className="modal__close" />
         <form className="modal__form" onSubmit={(evt) => handleSubmit(evt)}>
           {children}
-          <button
-            type="submit"
-            className="modal__submit"
-            // disabled
-          >
+          <button type="submit" className="modal__submit" disabled={isError}>
             {buttonText}
           </button>
         </form>

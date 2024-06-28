@@ -18,3 +18,10 @@
   line-height: calc(25 / 20);
   margin: 0;
 }
+
+@media screen and (max-width: 725px) {
+  .sidebar {
+    max-width: 343px;
+    height: 100px;
+  }
+}

@@ -69,6 +69,10 @@
   margin: 0;
 }
 
+.modal__label_error {
+  color: #ff4d00;
+}
+
 .modal__input {
   border-style: none;
   border-bottom: 1px solid;
@@ -76,6 +80,11 @@
   color: #00000080;
   padding: 0;
   margin: 0;
+}
+
+.modal__input_error {
+  color: #ff4d00;
+  border-color: #ff4d00;
 }
 
 .modal__radio-buttons {
@@ -93,6 +102,10 @@
 
 .modal__weather-legend {
   margin: 0 0 12px;
+}
+
+.modal__weather-legend_error {
+  color: #ff4d00;
 }
 
 .modal__radio-label {

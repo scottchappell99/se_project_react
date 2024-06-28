@@ -32,7 +32,7 @@ const isDay = ({ sunrise, sunset }, timeNow) => {
 };
 
 const getWeatherType = (temp) => {
-  if (temp >= 70) {
+  if (temp >= 65) {
     return "hot";
   } else if (temp >= 45) {
     return "warm";

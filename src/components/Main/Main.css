@@ -1,5 +1,5 @@
 .main {
-  margin: 28px 0 0;
+  margin: 28px 0 80px;
   flex-grow: 1;
 }
 
@@ -13,7 +13,7 @@
 
 .cards__list {
   max-width: 1360px;
-  min-width: 343px;
+  min-width: 300px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: auto;

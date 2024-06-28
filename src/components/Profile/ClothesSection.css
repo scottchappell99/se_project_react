@@ -43,3 +43,23 @@
   row-gap: 20px;
   column-gap: 20px;
 }
+
+@media screen and (max-width: 1380px) {
+  .clothes-section__cards-list {
+    grid-template-columns: repeat(3, 1fr);
+    row-gap: 15px;
+    column-gap: 16px;
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .clothes-section__cards-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 725px) {
+  .clothes-section__text-area {
+    justify-content: space-between;
+  }
+}

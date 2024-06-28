@@ -66,3 +66,12 @@
   color: #fff;
   cursor: pointer;
 }
+
+@media screen and (max-width: 725px) {
+  .toggle-switch {
+    justify-content: center;
+    width: 56px;
+    height: 28px;
+    margin: 0 auto;
+  }
+}
