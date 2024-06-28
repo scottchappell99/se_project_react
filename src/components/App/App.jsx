@@ -14,6 +14,7 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm.jsx";
 import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
+import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 
@@ -61,6 +62,11 @@ function App() {
   };
 
   const handleAddItemSubmit = (values) => {};
+
+  const handleDeleteClick = (card) => {
+    setActiveModal("delete-garment");
+    setSelectedCard(card);
+  };
 
   useEffect(() => {
     getWeather(coordinates, APIkey)
@@ -110,6 +116,15 @@ function App() {
           handleClose={closeActiveModal}
           handleOutsideClick={handleOutsideClick}
           isOpen={activeModal === "preview-garment"}
+          handleDeleteClick={handleDeleteClick}
+        />
+        <DeleteConfirmModal
+          activeModal={activeModal}
+          selectedCard={selectedCard}
+          handleClose={closeActiveModal}
+          handleOutsideClick={handleOutsideClick}
+          isOpen={activeModal === "delete-garment"}
+          // handleDeleteConfirm={handleDeleteConfirm}
         />
       </CurrentTempUnitContext.Provider>
     </div>

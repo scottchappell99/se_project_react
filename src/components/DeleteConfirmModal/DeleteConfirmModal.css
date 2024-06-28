@@ -1,0 +1,42 @@
+.modal__content_type_delete-confirm {
+  width: 670px;
+  height: 280px;
+  display: flex;
+  flex-direction: column;
+  padding: 60px;
+}
+
+.modal__delete-text {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.modal__delete_type_confirm {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  text-align: center;
+  color: #ff4d00;
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 24px;
+  cursor: pointer;
+}
+
+.modal__delete_type_cancel {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(24 / 20);
+  text-align: center;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
