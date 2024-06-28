@@ -10,7 +10,7 @@ function AddItemModal({
   isOpen,
 }) {
   const [name, setName] = useState("");
-  const [link, setLink] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const [weather, setWeather] = useState("");
 
   const handleNameChange = (e) => {
@@ -18,7 +18,7 @@ function AddItemModal({
   };
 
   const handleUrlChange = (e) => {
-    setLink(e.target.value);
+    setImageUrl(e.target.value);
   };
 
   const handleWeatherChange = (e) => {
@@ -27,7 +27,7 @@ function AddItemModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem({ name, link, weather });
+    onAddItem({ name, imageUrl, weather });
   };
 
   return (
@@ -57,7 +57,7 @@ function AddItemModal({
           type="url"
           className="modal__input"
           id="imageUrl"
-          value={link}
+          value={imageUrl}
           placeholder="Image URL"
           onChange={handleUrlChange}
         />

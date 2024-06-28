@@ -1,12 +1,11 @@
 import "./Main.css";
-import { defaultClothingItems } from "../../utils/constants.js";
 import WeatherCard from "../WeatherCard/WeatherCard.jsx";
 import ItemCard from "../ItemCard/ItemCard.jsx";
 import randomizeImage from "../../assets/randomize.svg";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import { useContext } from "react";
 
-function Main({ weatherData, openCard }) {
+function Main({ weatherData, openCard, clothingItems }) {
   const tempUnit = useContext(CurrentTempUnitContext);
 
   return (
@@ -19,7 +18,7 @@ function Main({ weatherData, openCard }) {
           } / You may want to wear:`}
         </p>
         <ul className="cards__list">
-          {defaultClothingItems
+          {clothingItems
             .filter((item) => {
               return item.weather === weatherData.type;
             })

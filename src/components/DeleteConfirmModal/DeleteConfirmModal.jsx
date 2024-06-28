@@ -6,6 +6,7 @@ function DeleteConfirmModal({
   handleClose,
   handleOutsideClick,
   isOpen,
+  handleDeleteConfirm,
 }) {
   return (
     <div
@@ -24,8 +25,20 @@ function DeleteConfirmModal({
           <br />
           This action is irreversible.
         </p>
-        <button className="modal__delete_type_confirm">Yes, delete item</button>
-        <button className="modal__delete_type_cancel">Cancel</button>
+        <button
+          onClick={() => handleDeleteConfirm(selectedCard)}
+          type="submit"
+          className="modal__delete_type_confirm"
+        >
+          Yes, delete item
+        </button>
+        <button
+          onClick={handleClose}
+          type="button"
+          className="modal__delete_type_cancel"
+        >
+          Cancel
+        </button>
       </div>
     </div>
   );
