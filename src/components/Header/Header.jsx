@@ -25,7 +25,7 @@ function Header({ handleAddClick, weatherData }) {
 
   return (
     <header className="header">
-      <Link to="/se_project_react/">
+      <Link to="/">
         <img
           src={logo}
           alt="WTWR Logo with a degree sign to the top right"
@@ -58,7 +58,7 @@ function Header({ handleAddClick, weatherData }) {
         >
           + Add clothes
         </button>
-        <Link to="/se_project_react/profile/" className="header__profile-link">
+        <Link to="/profile/" className="header__profile-link">
           <div className="header__user-container">
             <p className="header__name">Scott Chappell</p>
             <img src={avatar} alt="Scott Chappell" className="header__avatar" />
