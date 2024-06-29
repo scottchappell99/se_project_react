@@ -1,15 +1,19 @@
 const baseUrl = "http://localhost:3001";
 
+function request(url, options) {
+  return fetch(url, options).then(parseRequest);
+}
+
 function parseRequest(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => parseRequest(res));
+  return request(`${baseUrl}/items`);
 }
 
 function addItem({ name, imageUrl, weather }) {
-  return fetch(`${baseUrl}/items`, {
+  return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,13 +23,13 @@ function addItem({ name, imageUrl, weather }) {
       imageUrl: imageUrl,
       weather: weather,
     }),
-  }).then((res) => parseRequest(res));
+  });
 }
 
 function deleteItem({ _id }) {
-  return fetch(`${baseUrl}/items/${_id}`, {
+  return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-  }).then((res) => parseRequest(res));
+  });
 }
 
 export { getItems, addItem, deleteItem, parseRequest };

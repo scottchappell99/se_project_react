@@ -24,6 +24,7 @@ function App() {
   const [selectedCard, setSelectedCard] = useState({});
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (!activeModal) return;
@@ -62,23 +63,34 @@ function App() {
     setSelectedCard(card);
   };
 
-  const handleAddItemSubmit = (values) => {
+  const handleAddItemSubmit = (values, resetForm) => {
+    setIsLoading(true);
     addItem(values)
       .then((data) => {
         values._id = data._id;
       })
       .then(() => setClothingItems([values, ...clothingItems]))
       .then(closeActiveModal)
-      .catch(console.error);
+      .then(
+        resetForm({
+          name: "",
+          imageUrl: "",
+          weather: values.weather,
+        })
+      )
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   const handleDeleteConfirm = (card) => {
+    setIsLoading(true);
     deleteItem(card)
       .then(() =>
         setClothingItems(clothingItems.filter((item) => item._id !== card._id))
       )
       .then(closeActiveModal)
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   useEffect(() => {
@@ -135,6 +147,7 @@ function App() {
           handleOutsideClick={handleOutsideClick}
           onAddItem={handleAddItemSubmit}
           isOpen={activeModal === "add-garment"}
+          isLoading={isLoading}
         />
         <ItemModal
           activeModal={activeModal}
@@ -151,6 +164,7 @@ function App() {
           handleOutsideClick={handleOutsideClick}
           isOpen={activeModal === "delete-garment"}
           handleDeleteConfirm={handleDeleteConfirm}
+          isLoading={isLoading}
         />
       </CurrentTempUnitContext.Provider>
     </div>

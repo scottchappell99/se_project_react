@@ -8,23 +8,19 @@ function AddItemModal({
   handleOutsideClick,
   onAddItem,
   isOpen,
+  isLoading,
 }) {
   const { values, handleChange, errors, isValid, setValues, resetForm } =
     useFormAndValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(values);
-    resetForm({
-      name: "",
-      imageUrl: "",
-      weather: values.weather,
-    });
+    onAddItem(values, resetForm);
   };
 
   return (
     <ModalWithForm
-      buttonText="Add garment"
+      buttonText={isLoading ? "Saving garment..." : "Add garment"}
       title="New garment"
       activeModal={activeModal}
       handleClose={closeActiveModal}
@@ -45,7 +41,7 @@ function AddItemModal({
             errors.name === "" ? "" : "modal__input_error"
           }`}
           id="name"
-          value={values.name}
+          value={values.name || ""}
           name="name"
           placeholder="Name"
           onChange={handleChange}
@@ -64,7 +60,7 @@ function AddItemModal({
             errors.imageUrl === "" ? "" : "modal__input_error"
           }`}
           id="imageUrl"
-          value={values.imageUrl}
+          value={values.imageUrl || ""}
           name="imageUrl"
           placeholder="Image URL"
           onChange={handleChange}

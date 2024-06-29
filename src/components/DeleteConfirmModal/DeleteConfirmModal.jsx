@@ -7,6 +7,7 @@ function DeleteConfirmModal({
   handleOutsideClick,
   isOpen,
   handleDeleteConfirm,
+  isLoading,
 }) {
   return (
     <div
@@ -30,7 +31,7 @@ function DeleteConfirmModal({
           type="submit"
           className="modal__delete_type_confirm"
         >
-          Yes, delete item
+          {isLoading ? "Deleting garment" : "Yes, delete item"}
         </button>
         <button
           onClick={handleClose}
