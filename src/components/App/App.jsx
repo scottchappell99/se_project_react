@@ -63,7 +63,6 @@ function App() {
   };
 
   const handleAddItemSubmit = (values) => {
-    console.log(values);
     addItem(values)
       .then((data) => {
         values._id = data._id;
