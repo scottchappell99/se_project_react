@@ -15,14 +15,15 @@ function AddItemModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(
-      values,
+    // I gotta remember to stop invoking immediately.
+    const reset = () => {
       resetForm({
         name: "",
         imageUrl: "",
         weather: values.weather,
-      })
-    );
+      });
+    };
+    onAddItem(values, reset);
   };
 
   return (
