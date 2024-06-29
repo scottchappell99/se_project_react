@@ -15,7 +15,14 @@ function AddItemModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    onAddItem(values, resetForm);
+    onAddItem(
+      values,
+      resetForm({
+        name: "",
+        imageUrl: "",
+        weather: values.weather,
+      })
+    );
   };
 
   return (

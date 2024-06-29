@@ -71,13 +71,7 @@ function App() {
       })
       .then(() => setClothingItems([values, ...clothingItems]))
       .then(closeActiveModal)
-      .then(
-        resetForm({
-          name: "",
-          imageUrl: "",
-          weather: values.weather,
-        })
-      )
+      .then(resetForm)
       .catch(console.error)
       .finally(() => setIsLoading(false));
   };

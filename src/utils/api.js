@@ -32,4 +32,4 @@ function deleteItem({ _id }) {
   });
 }
 
-export { getItems, addItem, deleteItem, parseRequest };
+export { getItems, addItem, deleteItem, request, parseRequest };
