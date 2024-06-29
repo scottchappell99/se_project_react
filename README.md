@@ -12,9 +12,9 @@ My ranges of comfort with temperature are typically different that other people,
 
 The ranges are:
 
-- Hot: >= 70° F
-- Warm: 45° - 69° F
-- Cold < 45° F
+- Hot: >= 65° F
+- Warm: 40° - 64° F
+- Cold < 40° F
 
 ## Links
 

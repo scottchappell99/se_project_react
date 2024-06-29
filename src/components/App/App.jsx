@@ -57,25 +57,29 @@ function App() {
     currentTempUnit === "F" ? setCurrentTempUnit("C") : setCurrentTempUnit("F");
   };
 
-  const handleAddItemSubmit = (values) => {
-    addItem(values).then((data) => {
-      values._id = data._id;
-    });
-    setClothingItems([values, ...clothingItems]);
-  };
-
   const handleDeleteClick = (card) => {
     setActiveModal("delete-garment");
     setSelectedCard(card);
   };
 
+  const handleAddItemSubmit = (values) => {
+    console.log(values);
+    addItem(values)
+      .then((data) => {
+        values._id = data._id;
+      })
+      .then(() => setClothingItems([values, ...clothingItems]))
+      .then(closeActiveModal)
+      .catch(console.error);
+  };
+
   const handleDeleteConfirm = (card) => {
     deleteItem(card)
-      .then(
+      .then(() =>
         setClothingItems(clothingItems.filter((item) => item._id !== card._id))
       )
+      .then(closeActiveModal)
       .catch(console.error);
-    setActiveModal("");
   };
 
   useEffect(() => {

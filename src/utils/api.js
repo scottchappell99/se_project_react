@@ -1,14 +1,14 @@
 const baseUrl = "http://localhost:3001";
 
-function processServer(res) {
+function parseRequest(res) {
   return res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 }
 
 function getItems() {
-  return fetch(`${baseUrl}/items`).then((res) => processServer(res));
+  return fetch(`${baseUrl}/items`).then((res) => parseRequest(res));
 }
 
-function addItem({ name, weather, imageUrl }) {
+function addItem({ name, imageUrl, weather }) {
   return fetch(`${baseUrl}/items`, {
     method: "POST",
     headers: {
@@ -19,14 +19,13 @@ function addItem({ name, weather, imageUrl }) {
       imageUrl: imageUrl,
       weather: weather,
     }),
-  }).then((res) => processServer(res));
+  }).then((res) => parseRequest(res));
 }
 
 function deleteItem({ _id }) {
-  debugger;
   return fetch(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
-  }).then((res) => processServer(res));
+  }).then((res) => parseRequest(res));
 }
 
-export { getItems, addItem, deleteItem };
+export { getItems, addItem, deleteItem, parseRequest };

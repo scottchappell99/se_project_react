@@ -9,12 +9,8 @@ function ModalWithForm({
   handleOutsideClick,
   isOpen,
   handleSubmit,
-  isError,
+  isValid,
 }) {
-  const resetForm = (evt) => {
-    evt.target.reset();
-  };
-
   return (
     <div
       className={`modal ${isOpen && "modal_open"}`}
@@ -24,9 +20,9 @@ function ModalWithForm({
       <div className="modal__content modal__content_type_form">
         <h2 className="modal__title">{title}</h2>
         <button onClick={handleClose} type="button" className="modal__close" />
-        <form className="modal__form" onSubmit={(evt) => handleSubmit(evt)}>
+        <form className="modal__form" onSubmit={handleSubmit}>
           {children}
-          <button type="submit" className="modal__submit" disabled={isError}>
+          <button type="submit" className="modal__submit" disabled={!isValid}>
             {buttonText}
           </button>
         </form>

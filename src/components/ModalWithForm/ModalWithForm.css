@@ -27,6 +27,9 @@
   border-style: solid;
   border: 1px;
   box-sizing: border-box;
+}
+
+.modal__content_type_form {
   padding: 28px 28px 36px;
 }
 

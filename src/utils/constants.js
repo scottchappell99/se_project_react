@@ -14,31 +14,31 @@ export const weatherOptions = [
   },
   {
     day: true,
-    condition: "clouds",
+    condition: "cloudy",
     url: new URL("../assets/weather-images/day/cloudy-day.png", import.meta.url)
       .href,
   },
   {
     day: true,
-    condition: "fog",
+    condition: "foggy",
     url: new URL("../assets/weather-images/day/fog-day.png", import.meta.url)
       .href,
   },
   {
     day: true,
-    condition: "rain",
+    condition: "rainy",
     url: new URL("../assets/weather-images/day/rain-day.png", import.meta.url)
       .href,
   },
   {
     day: true,
-    condition: "snow",
+    condition: "snowy",
     url: new URL("../assets/weather-images/day/snow-day.png", import.meta.url)
       .href,
   },
   {
     day: true,
-    condition: "thunderstorm",
+    condition: "thunderstormy",
     url: new URL("../assets/weather-images/day/storm-day.png", import.meta.url)
       .href,
   },
@@ -52,7 +52,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "clouds",
+    condition: "cloudy",
     url: new URL(
       "../assets/weather-images/night/cloudy-night.png",
       import.meta.url
@@ -60,7 +60,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "fog",
+    condition: "foggy",
     url: new URL(
       "../assets/weather-images/night/fog-night.png",
       import.meta.url
@@ -68,7 +68,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "rain",
+    condition: "rainy",
     url: new URL(
       "../assets/weather-images/night/rain-night.png",
       import.meta.url
@@ -76,7 +76,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "snow",
+    condition: "snowy",
     url: new URL(
       "../assets/weather-images/night/snow-night.png",
       import.meta.url
@@ -84,7 +84,7 @@ export const weatherOptions = [
   },
   {
     day: false,
-    condition: "thunderstorm",
+    condition: "thunderstormy",
     url: new URL(
       "../assets/weather-images/night/storm-night.png",
       import.meta.url
