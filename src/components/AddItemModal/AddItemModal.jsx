@@ -15,7 +15,6 @@ function AddItemModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    // I gotta remember to stop invoking immediately.
     const reset = () => {
       resetForm({
         name: "",

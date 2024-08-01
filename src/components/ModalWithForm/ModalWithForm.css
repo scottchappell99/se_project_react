@@ -80,9 +80,13 @@
   border-style: none;
   border-bottom: 1px solid;
   border-color: #000;
-  color: #00000080;
+  color: #000000;
   padding: 0;
   margin: 0;
+}
+
+.modal__input::placeholder {
+  color: #00000080;
 }
 
 .modal__input_error {

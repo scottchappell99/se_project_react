@@ -10,6 +10,8 @@ import ItemModal from "../ItemModal/ItemModal.jsx";
 import Profile from "../Profile/Profile.jsx";
 import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal.jsx";
+import RegisterModal from "../RegisterModal/RegisterModal.jsx";
+import LoginModal from "../LoginModal/LoginModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
@@ -158,6 +160,20 @@ function App() {
           handleOutsideClick={handleOutsideClick}
           isOpen={activeModal === "delete-garment"}
           handleDeleteConfirm={handleDeleteConfirm}
+          isLoading={isLoading}
+        />
+        <RegisterModal
+          activeModal={activeModal}
+          handleClose={closeActiveModal}
+          handleOutsideClick={handleOutsideClick}
+          isOpen={activeModal === "register-user"}
+          isLoading={isLoading}
+        />
+        <LoginModal
+          activeModal={activeModal}
+          handleClose={closeActiveModal}
+          handleOutsideClick={handleOutsideClick}
+          isOpen={activeModal === "login-user"}
           isLoading={isLoading}
         />
       </CurrentTempUnitContext.Provider>
