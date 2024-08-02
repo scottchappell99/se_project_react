@@ -12,11 +12,12 @@ function getItems() {
   return request(`${baseUrl}/items`);
 }
 
-function addItem({ name, imageUrl, weather }) {
+function addItem({ name, imageUrl, weather }, token) {
   return request(`${baseUrl}/items`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
     },
     body: JSON.stringify({
       name: name,
@@ -26,10 +27,14 @@ function addItem({ name, imageUrl, weather }) {
   });
 }
 
-function deleteItem({ _id }) {
+function deleteItem({ _id }, token) {
   return request(`${baseUrl}/items/${_id}`, {
     method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
   });
 }
 
-export { getItems, addItem, deleteItem, request, parseRequest };
+export { getItems, addItem, deleteItem };

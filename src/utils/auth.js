@@ -27,3 +27,13 @@ function logInUser({ email, password }) {
     body: JSON.stringify({ email, password }),
   });
 }
+
+function getUserInfo(token) {
+  return request(`${baseUrl}/users/me`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+  });
+}

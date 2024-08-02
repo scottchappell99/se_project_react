@@ -12,9 +12,12 @@ import AddItemModal from "../AddItemModal/AddItemModal.jsx";
 import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { registerUser, logInUser, getUserInfo } from "../../utils/auth.js";
+import { setToken, getToken } from "../../utils/token.js";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -27,6 +30,7 @@ function App() {
   const [currentTempUnit, setCurrentTempUnit] = useState("F");
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     if (!activeModal) return;
@@ -66,8 +70,9 @@ function App() {
   };
 
   const handleAddItemSubmit = (values, resetForm) => {
+    const jwt = getToken();
     setIsLoading(true);
-    addItem(values)
+    addItem(values, jwt)
       .then((data) => {
         values._id = data._id;
       })
@@ -79,12 +84,40 @@ function App() {
   };
 
   const handleDeleteConfirm = (card) => {
+    const jwt = getToken();
     setIsLoading(true);
-    deleteItem(card)
+    deleteItem(card, jwt)
       .then(() =>
         setClothingItems(clothingItems.filter((item) => item._id !== card._id))
       )
       .then(closeActiveModal)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleRegistration = (values, resetForm) => {
+    setIsLoading(true);
+    registerUser(values)
+      .then(() => {
+        setIsLoggedIn(true);
+      })
+      .then(closeActiveModal)
+      .then(resetForm)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleLogIn = (values, resetForm) => {
+    setIsLoading(true);
+    logInUser(values)
+      .then((data) => {
+        if (data.token) {
+          setIsLoggedIn(true);
+          setToken(data.token);
+        }
+      })
+      .then(closeActiveModal)
+      .then(resetForm)
       .catch(console.error)
       .finally(() => setIsLoading(false));
   };
@@ -102,6 +135,21 @@ function App() {
     getItems()
       .then((data) => {
         setClothingItems(data);
+      })
+      .catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    const jwt = getToken();
+
+    if (!jwt) {
+      return;
+    }
+
+    getUserInfo(token)
+      .then((user) => {
+        setCurrentUser(user);
+        setIsLoggedIn(true);
       })
       .catch(console.error);
   }, []);
@@ -127,11 +175,13 @@ function App() {
             <Route
               path="/profile"
               element={
-                <Profile
-                  openCard={handleCardClick}
-                  handleAddClick={handleAddClick}
-                  clothingItems={clothingItems}
-                />
+                <ProtectedRoute isLoggedin={isLoggedIn}>
+                  <Profile
+                    openCard={handleCardClick}
+                    handleAddClick={handleAddClick}
+                    clothingItems={clothingItems}
+                  />
+                </ProtectedRoute>
               }
             />
           </Routes>
@@ -166,6 +216,7 @@ function App() {
           activeModal={activeModal}
           handleClose={closeActiveModal}
           handleOutsideClick={handleOutsideClick}
+          onRegister={handleRegistration}
           isOpen={activeModal === "register-user"}
           isLoading={isLoading}
         />
@@ -173,6 +224,7 @@ function App() {
           activeModal={activeModal}
           handleClose={closeActiveModal}
           handleOutsideClick={handleOutsideClick}
+          onLogIn={handleLogIn}
           isOpen={activeModal === "login-user"}
           isLoading={isLoading}
         />

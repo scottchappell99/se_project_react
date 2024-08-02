@@ -6,6 +6,7 @@ function LoginModal({
   activeModal,
   handleClose,
   handleOutsideClick,
+  onLogIn,
   isOpen,
   isLoading,
 }) {
@@ -20,7 +21,7 @@ function LoginModal({
         password: "",
       });
     };
-    onLogin(values, reset);
+    onLogIn(values, reset);
   };
 
   return (

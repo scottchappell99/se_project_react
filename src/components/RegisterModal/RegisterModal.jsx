@@ -6,6 +6,7 @@ function RegisterModal({
   activeModal,
   handleClose,
   handleOutsideClick,
+  onRegister,
   isOpen,
   isLoading,
 }) {
