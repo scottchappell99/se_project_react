@@ -1,11 +1,19 @@
 import "./Sidebar.css";
 import avatar from "../../assets/avatar.svg";
+import { useContext } from "react";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function Sidebar() {
+  const currentUser = useContext(CurrentUserContext);
+
   return (
     <section className="sidebar">
-      <img src={avatar} alt="Scott Chappell" className="sidebar__avatar" />
-      <p className="sidebar__name">Scott Chappell</p>
+      <img
+        src={currentUser.avatar}
+        alt={currentUser.name}
+        className="sidebar__avatar"
+      />
+      <p className="sidebar__name">{currentUser.name}</p>
     </section>
   );
 }

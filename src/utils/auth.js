@@ -37,3 +37,5 @@ function getUserInfo(token) {
     },
   });
 }
+
+export { registerUser, logInUser, getUserInfo };

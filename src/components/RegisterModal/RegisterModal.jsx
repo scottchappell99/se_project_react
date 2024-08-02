@@ -14,7 +14,7 @@ function RegisterModal({
     useFormAndValidation();
 
   const handleSubmit = (evt) => {
-    evt.preventDefault;
+    evt.preventDefault();
     const reset = () => {
       resetForm({
         email: "",

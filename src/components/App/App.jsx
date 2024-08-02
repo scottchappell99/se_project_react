@@ -15,6 +15,7 @@ import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
 import { getItems, addItem, deleteItem } from "../../utils/api.js";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth.js";
 import { setToken, getToken } from "../../utils/token.js";
@@ -31,6 +32,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     if (!activeModal) return;
@@ -69,6 +71,14 @@ function App() {
     setSelectedCard(card);
   };
 
+  const handleRegistrationClick = () => {
+    setActiveModal("register-user");
+  };
+
+  const handleLogInClick = () => {
+    setActiveModal("login-user");
+  };
+
   const handleAddItemSubmit = (values, resetForm) => {
     const jwt = getToken();
     setIsLoading(true);
@@ -98,7 +108,9 @@ function App() {
   const handleRegistration = (values, resetForm) => {
     setIsLoading(true);
     registerUser(values)
-      .then(() => {
+      .then((data) => {
+        values._id = data._id;
+        setCurrentUser(values);
         setIsLoggedIn(true);
       })
       .then(closeActiveModal)
@@ -112,8 +124,11 @@ function App() {
     logInUser(values)
       .then((data) => {
         if (data.token) {
-          setIsLoggedIn(true);
           setToken(data.token);
+          getUserInfo(data.token).then((user) => {
+            setCurrentUser(user);
+            setIsLoggedIn(true);
+          });
         }
       })
       .then(closeActiveModal)
@@ -146,7 +161,7 @@ function App() {
       return;
     }
 
-    getUserInfo(token)
+    getUserInfo(jwt)
       .then((user) => {
         setCurrentUser(user);
         setIsLoggedIn(true);
@@ -155,81 +170,89 @@ function App() {
   }, []);
 
   return (
-    <div className="app">
-      <CurrentTempUnitContext.Provider
-        value={{ currentTempUnit, handleToggleSwitchChange }}
-      >
-        <div className="app__content">
-          <Header handleAddClick={handleAddClick} weatherData={weatherData} />
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Main
-                  weatherData={weatherData}
-                  openCard={handleCardClick}
-                  clothingItems={clothingItems}
-                />
-              }
+    <CurrentUserContext.Provider value={currentUser}>
+      <div className="app">
+        <CurrentTempUnitContext.Provider
+          value={{ currentTempUnit, handleToggleSwitchChange }}
+        >
+          <div className="app__content">
+            <Header
+              handleAddClick={handleAddClick}
+              handleRegistrationClick={handleRegistrationClick}
+              handleLogInClick={handleLogInClick}
+              weatherData={weatherData}
+              isLoggedIn={isLoggedIn}
             />
-            <Route
-              path="/profile"
-              element={
-                <ProtectedRoute isLoggedin={isLoggedIn}>
-                  <Profile
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
                     openCard={handleCardClick}
-                    handleAddClick={handleAddClick}
                     clothingItems={clothingItems}
                   />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-          <Footer />
-        </div>
-        <AddItemModal
-          activeModal={activeModal}
-          closeActiveModal={closeActiveModal}
-          handleOutsideClick={handleOutsideClick}
-          onAddItem={handleAddItemSubmit}
-          isOpen={activeModal === "add-garment"}
-          isLoading={isLoading}
-        />
-        <ItemModal
-          activeModal={activeModal}
-          selectedCard={selectedCard}
-          handleClose={closeActiveModal}
-          handleOutsideClick={handleOutsideClick}
-          isOpen={activeModal === "preview-garment"}
-          handleDeleteClick={handleDeleteClick}
-        />
-        <DeleteConfirmModal
-          activeModal={activeModal}
-          selectedCard={selectedCard}
-          handleClose={closeActiveModal}
-          handleOutsideClick={handleOutsideClick}
-          isOpen={activeModal === "delete-garment"}
-          handleDeleteConfirm={handleDeleteConfirm}
-          isLoading={isLoading}
-        />
-        <RegisterModal
-          activeModal={activeModal}
-          handleClose={closeActiveModal}
-          handleOutsideClick={handleOutsideClick}
-          onRegister={handleRegistration}
-          isOpen={activeModal === "register-user"}
-          isLoading={isLoading}
-        />
-        <LoginModal
-          activeModal={activeModal}
-          handleClose={closeActiveModal}
-          handleOutsideClick={handleOutsideClick}
-          onLogIn={handleLogIn}
-          isOpen={activeModal === "login-user"}
-          isLoading={isLoading}
-        />
-      </CurrentTempUnitContext.Provider>
-    </div>
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <ProtectedRoute isLoggedin={isLoggedIn}>
+                    <Profile
+                      openCard={handleCardClick}
+                      handleAddClick={handleAddClick}
+                      clothingItems={clothingItems}
+                    />
+                  </ProtectedRoute>
+                }
+              />
+            </Routes>
+            <Footer />
+          </div>
+          <AddItemModal
+            activeModal={activeModal}
+            closeActiveModal={closeActiveModal}
+            handleOutsideClick={handleOutsideClick}
+            onAddItem={handleAddItemSubmit}
+            isOpen={activeModal === "add-garment"}
+            isLoading={isLoading}
+          />
+          <ItemModal
+            activeModal={activeModal}
+            selectedCard={selectedCard}
+            handleClose={closeActiveModal}
+            handleOutsideClick={handleOutsideClick}
+            isOpen={activeModal === "preview-garment"}
+            handleDeleteClick={handleDeleteClick}
+          />
+          <DeleteConfirmModal
+            activeModal={activeModal}
+            selectedCard={selectedCard}
+            handleClose={closeActiveModal}
+            handleOutsideClick={handleOutsideClick}
+            isOpen={activeModal === "delete-garment"}
+            handleDeleteConfirm={handleDeleteConfirm}
+            isLoading={isLoading}
+          />
+          <RegisterModal
+            activeModal={activeModal}
+            handleClose={closeActiveModal}
+            handleOutsideClick={handleOutsideClick}
+            onRegister={handleRegistration}
+            isOpen={activeModal === "register-user"}
+            isLoading={isLoading}
+          />
+          <LoginModal
+            activeModal={activeModal}
+            handleClose={closeActiveModal}
+            handleOutsideClick={handleOutsideClick}
+            onLogIn={handleLogIn}
+            isOpen={activeModal === "login-user"}
+            isLoading={isLoading}
+          />
+        </CurrentTempUnitContext.Provider>
+      </div>
+    </CurrentUserContext.Provider>
   );
 }
 

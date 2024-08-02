@@ -66,15 +66,26 @@
   color: #00000099;
 }
 
+.header__add-button_hidden {
+  visibility: hidden;
+  position: absolute;
+}
+
 .header__profile-link {
   text-decoration: none;
   color: #000;
   cursor: pointer;
   transition: color 0.5s linear;
+  display: flex;
 }
 
 .header__profile-link:hover {
   color: #00000099;
+}
+
+.header__profile-link_hidden {
+  visibility: hidden;
+  position: absolute;
 }
 
 .header__user-container {

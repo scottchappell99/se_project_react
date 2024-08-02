@@ -1,17 +1,26 @@
-import { useRef, useState } from "react";
+import { useContext, useState } from "react";
 
 import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
 import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 const currentDate = new Date().toLocaleString("default", {
   month: "long",
   day: "numeric",
 });
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  isLoggedIn,
+  handleRegistrationClick,
+  handleLogInClick,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
   const [isMobileMenuOpened, toggleMobileMenu] = useState(false);
 
   const handleHamburgerMenuClick = () => {
@@ -52,18 +61,41 @@ function Header({ handleAddClick, weatherData }) {
           className="header__close-button"
         ></button>
         <button
-          onClick={handleHamburgerAddClick}
+          onClick={
+            isLoggedIn ? handleHamburgerAddClick : handleRegistrationClick
+          }
           className="header__add-button"
           type="button"
         >
-          + Add clothes
+          {isLoggedIn ? "+ Add Clothes" : "Sign Up"}
         </button>
-        <Link to="/profile" className="header__profile-link">
+        <Link
+          to="/profile"
+          className={
+            isLoggedIn
+              ? "header__profile-link"
+              : "header__profile-link header__profile-link_hidden"
+          }
+        >
           <div className="header__user-container">
-            <p className="header__name">Scott Chappell</p>
-            <img src={avatar} alt="Scott Chappell" className="header__avatar" />
+            <p className="header__name">{currentUser.name}</p>
+            <img
+              src={currentUser.avatar}
+              alt={currentUser.name}
+              className="header__avatar"
+            />
           </div>
         </Link>
+        <button
+          onClick={handleLogInClick}
+          className={
+            isLoggedIn
+              ? "header__add-button header__add-button_hidden"
+              : "header__add-button"
+          }
+        >
+          Log In
+        </button>
       </div>
     </header>
   );

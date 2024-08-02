@@ -37,4 +37,4 @@ function deleteItem({ _id }, token) {
   });
 }
 
-export { getItems, addItem, deleteItem };
+export { getItems, addItem, deleteItem, request };
