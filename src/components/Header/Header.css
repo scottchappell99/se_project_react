@@ -104,6 +104,7 @@
   width: 40px;
   border: #000 1px;
   border-radius: 50%;
+  z-index: 0;
 }
 
 .header__avatar_hidden {
@@ -125,6 +126,7 @@
   font-weight: 700;
   font-size: 20px;
   line-height: calc(24 / 20);
+  z-index: 0;
 }
 
 .header__placeholder_hidden {

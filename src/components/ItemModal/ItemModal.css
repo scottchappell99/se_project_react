@@ -52,6 +52,10 @@
   cursor: pointer;
 }
 
+.modal__delete_hidden {
+  visibility: hidden;
+}
+
 @media screen and (max-width: 725px) {
   .modal__content_type_image {
     max-width: 343px;

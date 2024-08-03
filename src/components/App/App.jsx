@@ -85,6 +85,7 @@ function App() {
     addItem(values, jwt)
       .then((data) => {
         values._id = data._id;
+        values.owner = data.owner;
       })
       .then(() => setClothingItems([values, ...clothingItems]))
       .then(closeActiveModal)
@@ -197,7 +198,7 @@ function App() {
               <Route
                 path="/profile"
                 element={
-                  <ProtectedRoute isLoggedin={isLoggedIn}>
+                  <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       openCard={handleCardClick}
                       handleAddClick={handleAddClick}
