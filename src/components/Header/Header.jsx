@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 
 import "./Header.css";
 import logo from "../../assets/wtwr-logo.svg";
-import avatar from "../../assets/avatar.svg";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import { Link } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
@@ -22,6 +21,8 @@ function Header({
   const currentUser = useContext(CurrentUserContext);
 
   const [isMobileMenuOpened, toggleMobileMenu] = useState(false);
+
+  const userInitial = currentUser.name?.split("")[0];
 
   const handleHamburgerMenuClick = () => {
     toggleMobileMenu((prev) => !prev);
@@ -82,8 +83,21 @@ function Header({
             <img
               src={currentUser.avatar}
               alt={currentUser.name}
-              className="header__avatar"
+              className={
+                currentUser.avatar === ""
+                  ? "header__avatar header__avatar_hidden"
+                  : "header__avatar"
+              }
             />
+            <span
+              className={
+                currentUser.avatar === ""
+                  ? "header__placeholder"
+                  : "header__placeholder header__placeholder_hidden"
+              }
+            >
+              {userInitial}
+            </span>
           </div>
         </Link>
         <button
