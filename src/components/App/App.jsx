@@ -109,10 +109,16 @@ function App() {
   const handleRegistration = (values, resetForm) => {
     setIsLoading(true);
     registerUser(values)
-      .then((data) => {
-        values._id = data._id;
-        setCurrentUser(values);
-        setIsLoggedIn(true);
+      .then(() => {
+        logInUser(values).then((data) => {
+          if (data.token) {
+            setToken(data.token);
+            getUserInfo(data.token).then((user) => {
+              setCurrentUser(user);
+              setIsLoggedIn(true);
+            });
+          }
+        });
       })
       .then(closeActiveModal)
       .then(resetForm)
