@@ -13,10 +13,11 @@ import DeleteConfirmModal from "../DeleteConfirmModal/DeleteConfirmModal.jsx";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 import LoginModal from "../LoginModal/LoginModal.jsx";
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute.jsx";
+import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
-import { getItems, addItem, deleteItem } from "../../utils/api.js";
+import { getItems, addItem, deleteItem, editUser } from "../../utils/api.js";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth.js";
 import { setToken, getToken } from "../../utils/token.js";
 
@@ -79,6 +80,10 @@ function App() {
     setActiveModal("login-user");
   };
 
+  const handleEditProfileClick = () => {
+    setActiveModal("edit-profile");
+  };
+
   const handleAddItemSubmit = (values, resetForm) => {
     const jwt = getToken();
     setIsLoading(true);
@@ -137,6 +142,19 @@ function App() {
             setIsLoggedIn(true);
           });
         }
+      })
+      .then(closeActiveModal)
+      .then(resetForm)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
+  };
+
+  const handleEditProfile = (values, resetForm) => {
+    const jwt = getToken();
+    setIsLoading(true);
+    editUser(values, jwt)
+      .then((user) => {
+        setCurrentUser(user);
       })
       .then(closeActiveModal)
       .then(resetForm)
@@ -208,6 +226,7 @@ function App() {
                     <Profile
                       openCard={handleCardClick}
                       handleAddClick={handleAddClick}
+                      handleEditProfileClick={handleEditProfileClick}
                       clothingItems={clothingItems}
                     />
                   </ProtectedRoute>
@@ -255,6 +274,14 @@ function App() {
             handleOutsideClick={handleOutsideClick}
             onLogIn={handleLogIn}
             isOpen={activeModal === "login-user"}
+            isLoading={isLoading}
+          />
+          <EditProfileModal
+            activeModal={activeModal}
+            handleClose={closeActiveModal}
+            handleOutsideClick={handleOutsideClick}
+            onEditProfile={handleEditProfile}
+            isOpen={activeModal === "edit-profile"}
             isLoading={isLoading}
           />
         </CurrentTempUnitContext.Provider>

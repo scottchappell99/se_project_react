@@ -37,4 +37,18 @@ function deleteItem({ _id }, token) {
   });
 }
 
-export { getItems, addItem, deleteItem, request };
+function editUser({ name, avatar }, token) {
+  return request(`${baseUrl}/users/me`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      name: name,
+      avatar: avatar,
+    }),
+  });
+}
+
+export { getItems, addItem, deleteItem, editUser, request };

@@ -1,14 +1,22 @@
 .sidebar {
-  height: 56px;
   min-width: 345px;
   display: flex;
+  flex-direction: column;
   gap: 16px;
+  align-items: left;
+}
+
+.sidebar__header {
+  display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .sidebar__avatar {
   width: 56px;
   height: 56px;
+  border: 1px #000;
+  border-radius: 50%;
 }
 
 .sidebar__name {
@@ -17,6 +25,42 @@
   font-size: 20px;
   line-height: calc(25 / 20);
   margin: 0;
+}
+
+.sidebar__change {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(25 / 20);
+  margin: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.5s linear;
+}
+
+.sidebar__change:hover {
+  color: #00000099;
+}
+
+.sidebar__logout {
+  font-family: "Cabinet Grotesk", Arial, sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: calc(25 / 20);
+  margin: 0;
+  background: none;
+  border: none;
+  padding: 0;
+  text-align: left;
+  cursor: pointer;
+  transition: color 0.5s linear;
+}
+
+.sidebar__logout:hover {
+  color: #00000099;
 }
 
 @media screen and (max-width: 725px) {
