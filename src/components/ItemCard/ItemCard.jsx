@@ -18,7 +18,7 @@ function ItemCard({ item, openCard, onCardLike, isLoggedIn }) {
   return (
     <li
       className="card"
-      onClick={(evt) => {
+      onClick={() => {
         openCard(item);
       }}
     >

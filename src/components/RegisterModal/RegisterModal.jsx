@@ -9,8 +9,9 @@ function RegisterModal({
   onRegister,
   isOpen,
   isLoading,
+  changeModal,
 }) {
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
+  const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
 
   const handleSubmit = (evt) => {
@@ -36,6 +37,8 @@ function RegisterModal({
       handleSubmit={handleSubmit}
       isOpen={isOpen}
       isValid={isValid}
+      modalAddition="or Log In"
+      changeModal={changeModal}
     >
       <label
         className={`modal__label ${

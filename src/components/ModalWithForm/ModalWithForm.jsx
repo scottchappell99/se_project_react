@@ -10,6 +10,8 @@ function ModalWithForm({
   isOpen,
   handleSubmit,
   isValid,
+  modalAddition,
+  changeModal,
 }) {
   return (
     <div
@@ -22,9 +24,14 @@ function ModalWithForm({
         <button onClick={handleClose} type="button" className="modal__close" />
         <form className="modal__form" onSubmit={handleSubmit}>
           {children}
-          <button type="submit" className="modal__submit" disabled={!isValid}>
-            {buttonText}
-          </button>
+          <div className="modal__footer">
+            <button type="submit" className="modal__submit" disabled={!isValid}>
+              {buttonText}
+            </button>
+            <p onClick={changeModal} className="modal__addition">
+              {modalAddition || ""}
+            </p>
+          </div>
         </form>
       </div>
     </div>

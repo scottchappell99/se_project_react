@@ -8,6 +8,10 @@ WTWR is also responsive, with the ideal desktop width being 1440px and the ideal
 
 In the second part of this project, I have added the ability to switch temperature scales, added a new page via React Router, and added functionality to add and delete clothing items to a mock server (and the page itself). I also added some form validation and made everything responsive.
 
+In the third part of the project, WTWR now connects to the se_project_express server. In addition, users can log in and out, register, add clothing items, like clothing items, delete clothing items, and edit their profiles.
+
+Currently weather information is hardcoded to the 11229 zip code.
+
 My ranges of comfort with temperature are typically different that other people, so the ranges for clothing may be uncomfortable for others.
 
 The ranges are:
@@ -18,8 +22,10 @@ The ranges are:
 
 ## Links
 
-- [WTWR](https://scottchappell99.github.io/se_project_react/) Is not updated to Project 11
+- [WTWR](https://scottchappell99.github.io/se_project_react/) Is not updated to Project 14
 
 - [Figma Design Project 10](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 
 - [Figma Design Project 11](https://www.figma.com/design/JELwiE1GnlYDgJTcphpJOH/Sprint-11%3A-WTWR?node-id=311-433)
+
+- [Figma Design Project 14](https://www.figma.com/design/bfVOvqlLmoKZ5lpro8WWBe/Sprint-14_-WTWR?node-id=1-1105&t=8OBzJQ6hljVpAuBq-0)

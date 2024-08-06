@@ -194,6 +194,15 @@ function App() {
           .catch(console.error);
   };
 
+  const handleChangeModal = () => {
+    if (activeModal === "register-user") {
+      setActiveModal("login-user");
+    }
+    if (activeModal === "login-user") {
+      setActiveModal("register-user");
+    }
+  };
+
   useEffect(() => {
     getWeather(coordinates, APIkey)
       .then((data) => {
@@ -302,6 +311,7 @@ function App() {
             onRegister={handleRegistration}
             isOpen={activeModal === "register-user"}
             isLoading={isLoading}
+            changeModal={handleChangeModal}
           />
           <LoginModal
             activeModal={activeModal}
@@ -310,6 +320,7 @@ function App() {
             onLogIn={handleLogIn}
             isOpen={activeModal === "login-user"}
             isLoading={isLoading}
+            changeModal={handleChangeModal}
           />
           <EditProfileModal
             activeModal={activeModal}

@@ -10,7 +10,7 @@ function AddItemModal({
   isOpen,
   isLoading,
 }) {
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
+  const { values, handleChange, errors, isValid, resetForm } =
     useFormAndValidation();
 
   const handleSubmit = (evt) => {
