@@ -8,10 +8,16 @@
   justify-content: center;
 }
 
+.card__header {
+  position: absolute;
+  display: flex;
+  margin: 15px 0 0;
+  align-items: center;
+  gap: 10px;
+}
+
 .card__name {
   background-color: #fff;
-  position: absolute;
-  top: 15px;
   border-radius: 4px;
   font-family: "Cabinet Grotesk", Arial, sans-serif;
   font-weight: 700;
@@ -21,6 +27,31 @@
   margin: 0;
   color: #00000099;
   padding: 2px 12px;
+}
+
+.card__like-button_type_hidden {
+  visibility: hidden;
+  position: absolute;
+}
+
+.card__like-button_type_unlike {
+  background: transparent url("../../assets/unlike.svg") center no-repeat;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.card__like-button_type_like {
+  background: transparent url("../../assets/liked.svg") center no-repeat;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
 }
 
 .card__image {

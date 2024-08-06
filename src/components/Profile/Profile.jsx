@@ -4,16 +4,20 @@ import ClothesSection from "./ClothesSection";
 
 function Profile({
   openCard,
-  handleAddClick,
-  handleEditProfileClick,
+  onAddClick,
+  onEditProfileClick,
+  onLogOutClick,
   clothingItems,
 }) {
   return (
     <div className="profile">
-      <Sidebar handleEditProfileClick={handleEditProfileClick} />
+      <Sidebar
+        onEditProfileClick={onEditProfileClick}
+        onLogOutClick={onLogOutClick}
+      />
       <ClothesSection
         openCard={openCard}
-        handleAddClick={handleAddClick}
+        onAddClick={onAddClick}
         clothingItems={clothingItems}
       />
     </div>

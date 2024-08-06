@@ -5,7 +5,13 @@ import randomizeImage from "../../assets/randomize.svg";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import { useContext } from "react";
 
-function Main({ weatherData, openCard, clothingItems }) {
+function Main({
+  weatherData,
+  openCard,
+  clothingItems,
+  onCardLike,
+  isLoggedIn,
+}) {
   const tempUnit = useContext(CurrentTempUnitContext);
 
   return (
@@ -24,7 +30,13 @@ function Main({ weatherData, openCard, clothingItems }) {
             })
             .map((item) => {
               return (
-                <ItemCard key={item._id} item={item} openCard={openCard} />
+                <ItemCard
+                  key={item._id}
+                  item={item}
+                  openCard={openCard}
+                  onCardLike={onCardLike}
+                  isLoggedIn={isLoggedIn}
+                />
               );
             })}
         </ul>

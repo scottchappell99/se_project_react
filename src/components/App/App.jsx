@@ -17,9 +17,16 @@ import EditProfileModal from "../EditProfileModal/EditProfileModal.jsx";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi.js";
 import { CurrentTempUnitContext } from "../../contexts/CurrentTempUnitContext.js";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext.js";
-import { getItems, addItem, deleteItem, editUser } from "../../utils/api.js";
+import {
+  getItems,
+  addItem,
+  deleteItem,
+  editUser,
+  addCardLike,
+  removeCardLike,
+} from "../../utils/api.js";
 import { registerUser, logInUser, getUserInfo } from "../../utils/auth.js";
-import { setToken, getToken } from "../../utils/token.js";
+import { setToken, getToken, deleteToken } from "../../utils/token.js";
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
@@ -85,9 +92,9 @@ function App() {
   };
 
   const handleAddItemSubmit = (values, resetForm) => {
-    const jwt = getToken();
+    const token = getToken();
     setIsLoading(true);
-    addItem(values, jwt)
+    addItem(values, token)
       .then((data) => {
         values._id = data._id;
         values.owner = data.owner;
@@ -100,9 +107,9 @@ function App() {
   };
 
   const handleDeleteConfirm = (card) => {
-    const jwt = getToken();
+    const token = getToken();
     setIsLoading(true);
-    deleteItem(card, jwt)
+    deleteItem(card, token)
       .then(() =>
         setClothingItems(clothingItems.filter((item) => item._id !== card._id))
       )
@@ -149,10 +156,16 @@ function App() {
       .finally(() => setIsLoading(false));
   };
 
+  const handleLogOutClick = () => {
+    setIsLoggedIn(false);
+    setCurrentUser({});
+    deleteToken();
+  };
+
   const handleEditProfile = (values, resetForm) => {
-    const jwt = getToken();
+    const token = getToken();
     setIsLoading(true);
-    editUser(values, jwt)
+    editUser(values, token)
       .then((user) => {
         setCurrentUser(user);
       })
@@ -160,6 +173,25 @@ function App() {
       .then(resetForm)
       .catch(console.error)
       .finally(() => setIsLoading(false));
+  };
+
+  const handleCardLike = ({ _id, isLiked }) => {
+    const token = getToken();
+    !isLiked
+      ? addCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+          })
+          .catch(console.error)
+      : removeCardLike(_id, token)
+          .then((updatedCard) => {
+            setClothingItems((cards) =>
+              cards.map((item) => (item._id === _id ? updatedCard : item))
+            );
+          })
+          .catch(console.error);
   };
 
   useEffect(() => {
@@ -216,6 +248,8 @@ function App() {
                     weatherData={weatherData}
                     openCard={handleCardClick}
                     clothingItems={clothingItems}
+                    onCardLike={handleCardLike}
+                    isLoggedIn={isLoggedIn}
                   />
                 }
               />
@@ -225,8 +259,9 @@ function App() {
                   <ProtectedRoute isLoggedIn={isLoggedIn}>
                     <Profile
                       openCard={handleCardClick}
-                      handleAddClick={handleAddClick}
-                      handleEditProfileClick={handleEditProfileClick}
+                      onAddClick={handleAddClick}
+                      onEditProfileClick={handleEditProfileClick}
+                      onLogOutClick={handleLogOutClick}
                       clothingItems={clothingItems}
                     />
                   </ProtectedRoute>

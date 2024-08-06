@@ -3,7 +3,7 @@ import ItemCard from "../ItemCard/ItemCard";
 import { useContext } from "react";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
-function ClothesSection({ openCard, handleAddClick, clothingItems }) {
+function ClothesSection({ openCard, onAddClick, clothingItems }) {
   const currentUser = useContext(CurrentUserContext);
   const userClothing = clothingItems.filter((clothingItem) => {
     return clothingItem.owner === currentUser._id;
@@ -13,10 +13,7 @@ function ClothesSection({ openCard, handleAddClick, clothingItems }) {
     <section className="clothes-section">
       <div className="clothes-section__text-area">
         <p className="clothes-section__text">Your items</p>
-        <button
-          className="clothes-section__add-button"
-          onClick={handleAddClick}
-        >
+        <button className="clothes-section__add-button" onClick={onAddClick}>
           + Add New
         </button>
       </div>
