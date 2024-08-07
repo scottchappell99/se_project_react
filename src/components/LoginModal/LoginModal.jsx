@@ -49,7 +49,7 @@ function LoginModal({
           className={`modal__input ${
             errors.email === "" ? "" : "modal__input_error"
           }`}
-          id="email"
+          id="email-login"
           value={values.email || ""}
           name="email"
           placeholder="Email"
@@ -68,7 +68,7 @@ function LoginModal({
           className={`modal__input ${
             errors.password === "" ? "" : "modal__input_error"
           }`}
-          id="password"
+          id="password-login"
           value={values.password || ""}
           name="password"
           placeholder="Password"

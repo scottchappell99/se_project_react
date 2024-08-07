@@ -54,7 +54,7 @@ function EditProfileModal({
           className={`modal__input ${
             errors.name === "" ? "" : "modal__input_error"
           }`}
-          id="name"
+          id="name-edit-profile"
           value={values.name || ""}
           name="name"
           placeholder="Name"
@@ -73,7 +73,7 @@ function EditProfileModal({
           className={`modal__input ${
             errors.avatar === "" ? "" : "modal__input_error"
           }`}
-          id="avatar"
+          id="avatar-edit-profile"
           value={values.avatar || ""}
           name="avatar"
           placeholder="Avatar URL"

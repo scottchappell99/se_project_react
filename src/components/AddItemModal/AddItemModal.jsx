@@ -47,7 +47,7 @@ function AddItemModal({
           className={`modal__input ${
             errors.name === "" ? "" : "modal__input_error"
           }`}
-          id="name"
+          id="name-add-item"
           value={values.name || ""}
           name="name"
           placeholder="Name"
@@ -66,7 +66,7 @@ function AddItemModal({
           className={`modal__input ${
             errors.imageUrl === "" ? "" : "modal__input_error"
           }`}
-          id="imageUrl"
+          id="imageUrl-add-item"
           value={values.imageUrl || ""}
           name="imageUrl"
           placeholder="Image URL"

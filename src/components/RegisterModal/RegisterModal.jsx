@@ -51,7 +51,7 @@ function RegisterModal({
           className={`modal__input ${
             errors.email === "" ? "" : "modal__input_error"
           }`}
-          id="email"
+          id="email-register"
           value={values.email || ""}
           name="email"
           placeholder="Email"
@@ -70,7 +70,7 @@ function RegisterModal({
           className={`modal__input ${
             errors.password === "" ? "" : "modal__input_error"
           }`}
-          id="password"
+          id="password-register"
           value={values.password || ""}
           name="password"
           placeholder="Password"
@@ -89,7 +89,7 @@ function RegisterModal({
           className={`modal__input ${
             errors.name === "" ? "" : "modal__input_error"
           }`}
-          id="name"
+          id="name-register"
           value={values.name || ""}
           name="name"
           placeholder="Name"
@@ -102,13 +102,13 @@ function RegisterModal({
           errors.avatar === "" ? "" : "modal__label_error"
         }`}
       >
-        Avatar URL*
+        Avatar URL* {errors.avatar}
         <input
           type="url"
           className={`modal__input ${
             errors.avatar === "" ? "" : "modal__input_error"
           }`}
-          id="avatar"
+          id="avatar-register"
           value={values.avatar || ""}
           name="avatar"
           placeholder="Avatar URL"

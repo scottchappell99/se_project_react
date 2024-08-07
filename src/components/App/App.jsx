@@ -98,6 +98,7 @@ function App() {
       .then((data) => {
         values._id = data._id;
         values.owner = data.owner;
+        values.likes = data.likes;
       })
       .then(() => setClothingItems([values, ...clothingItems]))
       .then(closeActiveModal)

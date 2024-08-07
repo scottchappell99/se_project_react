@@ -7,7 +7,7 @@ function ItemCard({ item, openCard, onCardLike, isLoggedIn }) {
 
   const handleLike = (evt) => {
     evt.stopPropagation();
-    if (item.likes.includes(currentUser._id)) {
+    if (item.likes.isArray && item.likes.includes(currentUser._id)) {
       item.isLiked = true;
     } else {
       item.isLiked = false;
@@ -27,7 +27,7 @@ function ItemCard({ item, openCard, onCardLike, isLoggedIn }) {
         <button
           className={
             isLoggedIn
-              ? item.likes.includes(currentUser._id)
+              ? item.likes.isArray && item.likes.includes(currentUser._id)
                 ? "card__like-button_type_like"
                 : "card__like-button_type_unlike"
               : "card__like-button_type_hidden"
