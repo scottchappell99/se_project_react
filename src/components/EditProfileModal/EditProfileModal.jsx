@@ -11,7 +11,7 @@ function EditProfileModal({
   isOpen,
   isLoading,
 }) {
-  const { values, handleChange, errors, isValid, setValues, resetForm } =
+  const { values, handleChange, errors, isValid, setValues } =
     useFormAndValidation();
   const currentUser = useContext(CurrentUserContext);
 
@@ -23,13 +23,7 @@ function EditProfileModal({
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    const reset = () => {
-      resetForm({
-        name: "",
-        avatar: "",
-      });
-    };
-    onEditProfile(values, reset);
+    onEditProfile(values);
   };
 
   return (
