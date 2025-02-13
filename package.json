@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "deploy": "npm run build && scp -r ./dist/* scott_chappell99@scottchappell.punked.us:/home/scott_chappell99/frontend"
+    "deploy": "npm run build && scp -r ./dist/* scott_chappell99@wtwr.my.to:/home/scott_chappell99/wtwr_frontend"
   },
   "dependencies": {
     "react": "^18.2.0",

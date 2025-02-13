@@ -24,7 +24,7 @@ The ranges are:
 
 - [Backend for this Project](https://github.com/scottchappell99/se_project_express)
 
-- [WTWR](https://scottchappell.punked.us)
+- [WTWR](https://wtwr.my.to)
 
 - [Figma Design Project 10](https://www.figma.com/file/DTojSwldenF9UPKQZd6RRb/Sprint-10%3A-WTWR)
 
