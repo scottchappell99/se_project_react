@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://scottchappell.punked.us",
+  "homepage": "https://wtwr.my.to",
   "scripts": {
     "dev": "vite --open",
     "build": "vite build",

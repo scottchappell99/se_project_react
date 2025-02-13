@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://api.scottchappell.punked.us"
+    ? "https://api.wtwr.my.to"
     : "http://localhost:3001";
 
 function request(url, options) {
